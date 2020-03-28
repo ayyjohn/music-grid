@@ -60,7 +60,7 @@ height: 400px;
 }
 
 .grid-col-playing .grid-el {
-  background-color: #cc5490;
+  background-color: #a3326b;
 }
 
 .grid-col-playing .grid-el-selected {
@@ -69,7 +69,7 @@ height: 400px;
 
 .grid-el {
   display: flex;
-  background-color: #0af;
+  background-color: rgb(26, 109, 150);
   align-items: center;
   justify-content: center;
   width: 30px;
