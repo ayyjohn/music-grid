@@ -1,4 +1,6 @@
 import React from 'react';
+import GridColumn from './GridColumn';
+import GridElement from './GridElement';
 
 class MusicGrid extends React.Component {
     createGrid() {
@@ -6,13 +8,21 @@ class MusicGrid extends React.Component {
         for (let i = 0; i < 10; i++) {
             let row = []
             for (let j = 0; j < 10; j++) {
-                row.push(<td className="grid-el" key={`${i-j}`}></td>)
+                row.push(
+                    <GridElement
+                        selected={(i === 0 || i === 3) && j === 5}
+                        key={`${i}-${j}`}
+                    ></GridElement>
+                )
             }
-            if (i === 0) {
-                cols.push(<tr className="grid-col-playing" key={i}>{row}</tr>)
-            } else {
-                cols.push(<tr className="grid-col" key={i}>{row}</tr>)
-            }
+            cols.push(
+                <GridColumn
+                    playing={i === 0}
+                    key={`${i}`}
+                    row={row}
+                >
+                </GridColumn>
+            )
         }
         return cols
     }
