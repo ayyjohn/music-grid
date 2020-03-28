@@ -16,6 +16,7 @@ class MusicGrid extends React.Component {
             selectedElements
         };
         console.log(selectedElements);
+        this.audio = new Audio(process.env.PUBLIC_URL + '/notes/a_1.wav');
 
     }
 
@@ -30,6 +31,7 @@ class MusicGrid extends React.Component {
     }
 
     toggleSelected = e => {
+        this.audio.play()
         let {row, col} = e.currentTarget.dataset;
         console.log(e.currentTarget.dataset);
         console.log(e.currentTarget.dataset);
