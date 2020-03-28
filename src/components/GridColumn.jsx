@@ -5,7 +5,7 @@ const GridColumn = props => {
     return (
         <tr
             className={className}
-            key={props.key}
+            data-playing={props.playing}
         >
         {props.row}
         </tr>

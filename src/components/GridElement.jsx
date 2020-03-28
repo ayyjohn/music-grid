@@ -5,7 +5,6 @@ const GridElement = props => {
     return (
         <td
             className={className}
-            key={props.key}
         ></td>
     )
 }
