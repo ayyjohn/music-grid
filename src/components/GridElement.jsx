@@ -5,6 +5,9 @@ const GridElement = props => {
     return (
         <td
             className={className}
+            onClick={props.click}
+            data-row={props.row}
+            data-col={props.col}
         ></td>
     )
 }
