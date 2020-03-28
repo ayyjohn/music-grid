@@ -50,7 +50,7 @@ width: 400px;
 height: 400px;
 }
 
-.grid-row, .grid-row-playing {
+.grid-col, .grid-col-playing {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,8 +59,12 @@ height: 400px;
   height: 100%;
 }
 
-.grid-row-playing .grid-el{
-  background-color: hotpink;
+.grid-col-playing .grid-el {
+  background-color: #cc5490;
+}
+
+.grid-col-playing .grid-el-selected {
+  background-color: #ff69b4;
 }
 
 .grid-el {
@@ -71,4 +75,15 @@ height: 400px;
   width: 30px;
   height: 30px;
   border-radius: 6px;
+}
+
+.grid-el-selected {
+  display: flex;
+  background-color: #0ff;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+
 }
