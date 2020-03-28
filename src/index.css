@@ -44,19 +44,23 @@ html {
 #music-grid-table-body {
 display: flex;
 align-items: center;
-flex-direction: column;
+flex-direction: row;
 justify-content: space-around;
 width: 400px;
 height: 400px;
 }
 
-.grid-row {
+.grid-row, .grid-row-playing {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   width: 100%;
   height: 100%;
+}
+
+.grid-row-playing .grid-el{
+  background-color: hotpink;
 }
 
 .grid-el {
