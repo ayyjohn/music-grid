@@ -5,10 +5,18 @@ import GridElement from './GridElement';
 class MusicGrid extends React.Component {
     constructor(props) {
         super(props);
+        this.gridSize = 10;
+        let selectedElements = []
+        for (let i = 0; i < 10; i++) {
+           selectedElements[i] = new Array(10)
+           selectedElements[i].fill(false)
+        }
         this.state = {
             playingCol: 0,
+            selectedElements
         };
-        this.gridSize = 10;
+        console.log(selectedElements);
+
     }
 
     componentDidMount() {
@@ -21,6 +29,22 @@ class MusicGrid extends React.Component {
         }))
     }
 
+    toggleSelected = e => {
+        let {row, col} = e.currentTarget.dataset;
+        console.log(e.currentTarget.dataset);
+        console.log(e.currentTarget.dataset);
+
+        console.log(parseInt(row))
+        console.log(parseInt(col))
+        let nextSelectedElements = this.state.selectedElements;
+
+        const selected = nextSelectedElements[col][row]
+        nextSelectedElements[col][row] = !selected;
+        this.setState({
+            selectedElements: nextSelectedElements
+        });
+    }
+
     createGrid() {
         let cols = []
         for (let i = 0; i < 10; i++) {
@@ -30,13 +54,17 @@ class MusicGrid extends React.Component {
                 row.push(
                     <GridElement
                         key={name}
+                        selected={this.state.selectedElements[i][j]}
+                        click={this.toggleSelected}
+                        row={j}
+                        col={i}
                     ></GridElement>
                 )
             }
             cols.push(
                 <GridColumn
                     playing={i === this.state.playingCol}
-                    key={`${i}`}
+                    key={i}
                     row={row}
                 >
                 </GridColumn>
