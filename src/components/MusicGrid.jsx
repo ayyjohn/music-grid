@@ -7,6 +7,10 @@ class MusicGrid extends React.Component {
         super(props);
         this.gridSize = 10;
         let selectedElements = []
+        this.sounds = []
+        for (let i = 1; i <= 10; i++) {
+            this.sounds.push(new Audio(process.env.PUBLIC_URL + `/notes/a_${i}.wav`))
+        }
         for (let i = 0; i < 10; i++) {
            selectedElements[i] = new Array(10)
            selectedElements[i].fill(false)
@@ -16,22 +20,31 @@ class MusicGrid extends React.Component {
             selectedElements
         };
         console.log(selectedElements);
-        this.audio = new Audio(process.env.PUBLIC_URL + '/notes/a_1.wav');
 
     }
 
     componentDidMount() {
-        setInterval(this.cyclePlaying, 200)
+        setInterval(this.cyclePlaying, 360);
     }
 
-    cyclePlaying = (prevState, props) => {
+    cyclePlaying = () => {
         this.setState((prevState, props) => ({
             playingCol: (prevState.playingCol + 1) % this.gridSize
-        }))
+        }), this.playNotes)
+    }
+
+    playNotes = () => {
+        const currentCol = this.state.playingCol;
+        const selectedColumn = this.state.selectedElements[currentCol]
+        for (let i = 0; i < selectedColumn.length; i++) {
+            if (selectedColumn[i]) {
+                this.sounds[i].currentTime = 0;
+                this.sounds[i].play()
+            }
+        }
     }
 
     toggleSelected = e => {
-        this.audio.play()
         let {row, col} = e.currentTarget.dataset;
         console.log(e.currentTarget.dataset);
         console.log(e.currentTarget.dataset);
