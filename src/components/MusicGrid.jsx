@@ -8,7 +8,11 @@ class MusicGrid extends React.Component {
             for (let j = 0; j < 10; j++) {
                 cols.push(<td className="grid-el" key={`${i-j}`}></td>)
             }
-            rows.push(<tr className="grid-row" key={i}>{cols}</tr>)
+            if (i === 0) {
+                rows.push(<tr className="grid-row-playing" key={i}>{cols}</tr>)
+            } else {
+                rows.push(<tr className="grid-row" key={i}>{cols}</tr>)
+            }
         }
         return rows
     }
