@@ -9,9 +9,9 @@ class MusicGrid extends React.Component {
                 row.push(<td className="grid-el" key={`${i-j}`}></td>)
             }
             if (i === 0) {
-                cols.push(<tr className="grid-row-playing" key={i}>{cols}</tr>)
+                cols.push(<tr className="grid-col-playing" key={i}>{row}</tr>)
             } else {
-                cols.push(<tr className="grid-row" key={i}>{cols}</tr>)
+                cols.push(<tr className="grid-col" key={i}>{row}</tr>)
             }
         }
         return cols
