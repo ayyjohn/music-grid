@@ -1,30 +1,41 @@
 import React from 'react';
 import GridColumn from './GridColumn';
 import GridElement from './GridElement';
+import Pizzicato from 'pizzicato';
 
 class MusicGrid extends React.Component {
     constructor(props) {
         super(props);
-        this.gridSize = 10;
+        this.gridSize = 8;
         let selectedElements = []
         this.sounds = []
         for (let i = 1; i <= 10; i++) {
-            this.sounds.push(new Audio(process.env.PUBLIC_URL + `/notes/a_${i}.wav`))
+            let sound = new Pizzicato.Sound(process.env.PUBLIC_URL + `/notes/a_${i}.wav`);
+            // let sound = new Audio(process.env.PUBLIC_URL + `/notes/a_${i}.wav`)
+            this.sounds.push(sound);
         }
-        for (let i = 0; i < 10; i++) {
-           selectedElements[i] = new Array(10)
+        for (let i = 0; i < this.gridSize; i++) {
+           selectedElements[i] = new Array(this.gridSize)
            selectedElements[i].fill(false)
         }
         this.state = {
             playingCol: 0,
             selectedElements
         };
+        // start playing "only" by nicki minaj
+        this.state.selectedElements[0][3] = true;
+        this.state.selectedElements[2][6] = true;
+        this.state.selectedElements[4][7] = true;
+        this.state.selectedElements[6][6] = true;
         console.log(selectedElements);
 
     }
 
     componentDidMount() {
-        setInterval(this.cyclePlaying, 360);
+        setTimeout(() => {
+            this.playNotes();
+            setInterval(this.cyclePlaying, 500);
+        }, 500);
     }
 
     cyclePlaying = () => {
@@ -39,7 +50,7 @@ class MusicGrid extends React.Component {
         for (let i = 0; i < selectedColumn.length; i++) {
             if (selectedColumn[i]) {
                 this.sounds[i].currentTime = 0;
-                this.sounds[i].play()
+                this.sounds[i].play(0)
             }
         }
     }
@@ -62,9 +73,9 @@ class MusicGrid extends React.Component {
 
     createGrid() {
         let cols = []
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < this.gridSize; i++) {
             let row = []
-            for (let j = 0; j < 10; j++) {
+            for (let j = 0; j < this.gridSize; j++) {
                 const name = `${i}-${j}`
                 row.push(
                     <GridElement
